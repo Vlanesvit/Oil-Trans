@@ -1,0 +1,9 @@
+@mixin adaptive-calc($property, $min, $max, $minViewport: 320, $maxViewport: 1920) { 
+	@media (max-width: #{$maxViewport}px) {
+	  #{$property}: calc(
+		#{$min}px + (#{$max} - #{$min}) * 
+		((100vw - #{$minViewport}px) / (#{$maxViewport} - #{$minViewport}))
+	  );
+	}
+  }
+  

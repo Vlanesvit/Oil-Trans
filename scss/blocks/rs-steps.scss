@@ -1,0 +1,115 @@
+@import "../base/_mixin";
+
+.rs-steps {
+	padding-top: 227px;
+	@include adaptive-calc(padding-top, 50, 227, 320, 1920);
+
+	// .rs-steps__container
+	&__container {
+	}
+
+	// .rs-steps__wrapper
+	&__wrapper {
+		@media (min-width: 1169.98px) {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 30px;
+		}
+	}
+
+	// .rs-steps__list
+	&__list {
+		grid-column: 3 span;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 60px 30px;
+		counter-reset: li;
+
+		@media (min-width: 1439.98px) {
+			padding-right: 60px;
+		}
+
+		@media (max-width: 1169.98px) {
+			gap: 30px 20px;
+		}
+	}
+
+	// .rs-steps__item
+	&__item {
+		flex: 0 0 calc(33.33333% - 20px);
+
+		@media (max-width: 1169.98px) {
+			flex: 0 0 calc(50% - 10px);
+		}
+
+		@media (max-width: 767.98px) {
+			flex: 0 0 100%;
+		}
+
+		&:last-child {
+			margin: 0px 0px 0px auto;
+		}
+
+		&::before {
+			display: block;
+			counter-increment: li;
+			content: counter(li, decimal-leading-zero);
+			font-weight: 700;
+			font-size: clamp(14px, 1.5vw, 20px);
+			// line-height: 30px;
+			line-height: 150%;
+			letter-spacing: 0.03em;
+			color: #2e9cca;
+			margin-bottom: clamp(14px, 1.5vw, 20px);
+		}
+	}
+
+	// .rs-steps__desc
+	&__desc {
+		h5 {
+			letter-spacing: 0px;
+		}
+		p {
+			margin-top: clamp(14px, 1.5vw, 20px);
+		}
+	}
+
+	// .rs-steps__block
+	&__block {
+		grid-column: 1 span;
+		border-radius: 0 50px;
+		padding: 40px 20px 40px 40px;
+		position: relative;
+		z-index: 10;
+		background: #34bdf3;
+		overflow: hidden;
+		color: #fff;
+
+		@include adaptive-calc(padding-top, 20, 40, 320, 1920);
+		@include adaptive-calc(padding-bottom, 20, 40, 320, 1920);
+		@include adaptive-calc(padding-left, 16, 40, 320, 1920);
+		@include adaptive-calc(padding-right, 16, 20, 320, 1920);
+
+		@media (max-width: 1169.98px){
+			  margin-top: 30px;
+		}
+
+		img {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: -1;
+
+			@media (max-width: 991.98px){
+				  display: none;
+			}
+		}
+
+		// .rs-steps__block_body
+		&_body {
+			p {
+				margin-top: clamp(14px, 1.5vw, 20px);
+			}
+		}
+	}
+}

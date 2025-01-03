@@ -1,0 +1,95 @@
+@import "../base/_mixin";
+
+.rs-gallery {
+	position: relative;
+	margin-top: 322px;
+
+	@include adaptive-calc(margin-top, 50, 322, 320, 1920);
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: -130px;
+		left: 0;
+		width: 100%;
+		height: 180px;
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='1920' height='181' viewBox='0 0 1920 181' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.000244141 0.900869L462.401 0.900635C480.463 0.900587 498.187 5.79221 513.692 15.056L766.309 165.99C781.814 175.253 799.538 180.145 817.6 180.145L1920 180.144' stroke='%23C9C9C9' /%3e%3c/svg%3e");
+		background-repeat: no-repeat;
+		background-position: top left;
+		background-size: contain;
+
+		@include adaptive-calc(top, -30, -130, 320, 1920);
+	}
+
+	// .rs-gallery__container
+	&__container {
+	}
+
+	// .rs-gallery__marquee
+	&__marquee {
+		margin-top: 92px;
+
+		@include adaptive-calc(margin-top, 30, 92, 320, 1920);
+	}
+
+	.marquee {
+		position: relative;
+
+		&[data-direction="left"] {
+			ul {
+				li {
+					&:not(:first-child) {
+						margin-left: 30px;
+						@include adaptive-calc(margin-left, 16, 30, 320, 1920);
+					}
+				}
+			}
+		}
+
+		&[data-direction="right"] {
+			ul {
+				li {
+					&:not(:last-child) {
+						margin-right: 30px;
+						@include adaptive-calc(margin-right, 16, 30, 320, 1920);
+					}
+				}
+			}
+		}
+
+		ul {
+			width: 100%;
+			height: 100%;
+			display: flex;
+
+			li {
+				display: inline-flex;
+				align-items: center;
+				flex-shrink: 0;
+
+				a {
+					height: 100%;
+					display: inline-block;
+				}
+
+				img {
+					height: 100%;
+					object-fit: contain;
+					border-radius: 0 68px;
+					max-height: 364px;
+					transition: border-radius 0.3s ease 0s;
+
+					@include adaptive-calc(max-height, 100, 364, 320, 1920);
+					@include adaptive-calc(border-bottom-left-radius, 30, 68, 320, 1920);
+					@include adaptive-calc(border-top-right-radius, 30, 68, 320, 1920);
+
+					@media (any-hover: hover) {
+						&:hover {
+							border-radius: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}

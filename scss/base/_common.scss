@@ -1,0 +1,250 @@
+section {
+	position: relative;
+}
+
+.blockquote {
+	display: block;
+	max-width: 370px;
+	margin-top: 98px;
+	border-radius: 50px 0;
+	padding: 20px 40px;
+	background: #2e9cca;
+	font-weight: 400;
+	font-size: clamp(14px, 1.2vw, 16px);
+	// line-height: 24px;
+	line-height: 150%;
+	color: #fff;
+	position: relative;
+
+	@include adaptive-calc(padding-top, 16, 20, 320, 1920);
+	@include adaptive-calc(padding-bottom, 16, 20, 320, 1920);
+	@include adaptive-calc(padding-left, 30, 40, 320, 1920);
+	@include adaptive-calc(padding-right, 30, 40, 320, 1920);
+}
+
+// Text ========================================================================================================================================================
+h1 {
+	font-family: "Raleway", sans-serif;
+	font-weight: 600;
+	font-size: clamp(22px, 4.5vw, 80px);
+	line-height: 90%;
+}
+
+h2 {
+	font-family: "Raleway", sans-serif;
+	font-weight: 600;
+	font-size: clamp(18px, 3.5vw, 60px);
+	line-height: 110%;
+}
+
+h3 {
+	font-family: "Raleway", sans-serif;
+	font-weight: 600;
+	font-size: clamp(16px, 3vw, 50px);
+	line-height: 110%;
+}
+
+h4 {
+	font-family: "Raleway", sans-serif;
+	font-weight: 600;
+	font-size: clamp(14px, 2vw, 30px);
+	line-height: 110%;
+}
+
+h5 {
+	font-weight: 600;
+	font-size: clamp(14px, 1.5vw, 20px);
+	line-height: 150%;
+	letter-spacing: 0.03em;
+}
+
+p {
+	font-weight: 400;
+	font-size: clamp(14px, 1.2vw, 16px);
+	line-height: 150%;
+}
+
+// Button ========================================================================================================================================================
+.rs-btn {
+	cursor: pointer;
+	position: relative;
+	display: inline-flex;
+	overflow: hidden;
+	justify-content: center;
+	text-align: center;
+	z-index: 10;
+
+	font-family: "Raleway", sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 125%;
+	letter-spacing: 0.03em;
+	border-radius: 0 27px;
+
+	@include adaptive-calc(font-size, 13, 16, 320, 1920);
+
+	&._btn-primary {
+		color: #fafafa;
+		background-color: var(--primary-color);
+	}
+
+	&._btn-white {
+		background: #fff;
+		color: #4c4c4c;
+	}
+
+	&__wrap {
+		position: relative;
+	}
+
+	&__text {
+		padding: 20px 30px;
+		position: relative;
+		transition: all 1s cubic-bezier(0.135, 0.9, 0.15, 1);
+
+		@include adaptive-calc(padding-top, 12, 20, 320, 1920);
+		@include adaptive-calc(padding-bottom, 12, 20, 320, 1920);
+		@include adaptive-calc(padding-left, 16, 30, 320, 1920);
+		@include adaptive-calc(padding-right, 16, 30, 320, 1920);
+
+		&:not(:first-child) {
+			position: absolute;
+		}
+
+		&:nth-child(1) {
+			transform: translateY(0);
+		}
+
+		&:nth-child(2) {
+			transform: translateY(100%);
+		}
+
+		&:nth-child(3) {
+			transform: translateY(200%);
+		}
+	}
+
+	@media (any-hover: hover) {
+		&:hover {
+			.rs-btn {
+				&__text {
+					&:nth-child(1) {
+						transform: translateY(-200%);
+					}
+
+					&:nth-child(2) {
+						transform: translateY(-200%);
+					}
+
+					&:nth-child(3) {
+						transform: translateY(-100%);
+					}
+				}
+			}
+		}
+	}
+}
+
+.form {
+	width: 100%;
+
+	// .form__wrapper
+	&__wrapper {
+		position: relative;
+	}
+
+	// .form__block
+	&__block {
+	}
+
+	&__row {
+		@media (min-width: 991.98px) {
+			display: flex;
+			gap: 20px;
+
+			.form__line {
+				flex: 1 1 50% calc(50% - 10px);
+			}
+		}
+	}
+
+	// .form__line
+	&__line {
+		width: 100%;
+		position: relative;
+		margin-bottom: 20px;
+	}
+
+	&__footer {
+		@media (min-width: 991.98px) {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 28px;
+		}
+	}
+
+	&__agreement {
+		font-weight: 300;
+		font-size: 12px;
+		color: #4c4c4c;
+
+		@media (min-width: 991.98px) {
+			margin-right: 20px;
+			max-width: 602px;
+		}
+
+		a {
+			text-decoration: underline;
+			text-decoration-skip-ink: none;
+
+			@media (any-hover: hover) {
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+
+	// .form__button
+	&__button {
+		width: 100%;
+
+		@media (min-width: 991.98px) {
+			max-width: 301px;
+		}
+
+		@media (max-width: 991.98px) {
+			margin-top: 20px;
+		}
+
+		.rs-btn {
+			width: 100%;
+			white-space: nowrap;
+			border-radius: 48px 0;
+		}
+	}
+}
+
+.rs-input {
+	outline: none;
+	width: 100%;
+	transition: 0.3s ease 0s;
+	transition-property: background-color, border-color;
+	background-color: transparent;
+	font-weight: 400;
+	font-size: clamp(14px, 1.2vw, 16px);
+	letter-spacing: 0.03em;
+	color: var(--font-color);
+	padding: 20px 30px;
+	border-bottom: 1px solid #c9c9c9;
+
+	@include adaptive-calc(padding-top, 12, 20, 320, 1920);
+	@include adaptive-calc(padding-bottom, 12, 20, 320, 1920);
+	@include adaptive-calc(padding-left, 16, 30, 320, 1920);
+	@include adaptive-calc(padding-right, 16, 30, 320, 1920);
+
+	&::placeholder {
+		color: #c9c9c9;
+	}
+}

@@ -1,0 +1,83 @@
+.rs-partners {
+  margin-top: 40px;
+  position: relative;
+}
+@media (max-width: 1920px) {
+  .rs-partners {
+    margin-top: calc(50px + (40 - 50) * (100vw - 320px) / (1920 - 320));
+  }
+}
+.rs-partners::before {
+  content: "";
+  position: absolute;
+  top: -125px;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='1920' height='181' viewBox='0 0 1920 181' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.000244141 0.900869L462.401 0.900635C480.463 0.900587 498.187 5.79221 513.692 15.056L766.309 165.99C781.814 175.253 799.538 180.145 817.6 180.145L1920 180.144' stroke='%23C9C9C9' /%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: contain;
+}
+@media (max-width: 1920px) {
+  .rs-partners::before {
+    top: calc(-30px + (-125 - -30) * (100vw - 320px) / (1920 - 320));
+  }
+}
+.rs-partners__marquee {
+  margin-top: 60px;
+}
+@media (max-width: 1920px) {
+  .rs-partners__marquee {
+    margin-top: calc(30px + (60 - 30) * (100vw - 320px) / (1920 - 320));
+  }
+}
+.rs-partners .marquee {
+  position: relative;
+}
+.rs-partners .marquee[data-direction=left] ul li:not(:first-child) {
+  margin-left: 181px;
+}
+@media (max-width: 1920px) {
+  .rs-partners .marquee[data-direction=left] ul li:not(:first-child) {
+    margin-left: calc(16px + (181 - 16) * (100vw - 320px) / (1920 - 320));
+  }
+}
+.rs-partners .marquee[data-direction=right] ul li:not(:last-child) {
+  margin-right: 181px;
+}
+@media (max-width: 1920px) {
+  .rs-partners .marquee[data-direction=right] ul li:not(:last-child) {
+    margin-right: calc(16px + (181 - 16) * (100vw - 320px) / (1920 - 320));
+  }
+}
+.rs-partners .marquee ul {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.rs-partners .marquee ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+.rs-partners .marquee ul li img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 1439.98px) {
+  .rs-partners .marquee ul li img {
+    height: 75px;
+  }
+}
+@media (max-width: 1439.98px) and (max-width: 1920px) {
+  .rs-partners .marquee ul li img {
+    height: calc(30px + (75 - 30) * (100vw - 320px) / (1920 - 320));
+  }
+}
