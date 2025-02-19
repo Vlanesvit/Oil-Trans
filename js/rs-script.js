@@ -89,11 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		{
 			xPercent: -35.5, // Конечная позиция по X
 			yPercent: -47,   // Конечная позиция по Y
-			duration: 0.5,     // Длительность анимации (секунды)
+			duration: 0.3,     // Длительность анимации (секунды)
 			ease: "power2.out", // Тип easing
 			scrollTrigger: {
 				trigger: ".rs-numbers", // Триггер для запуска анимации
-				start: "top-=50% center",    // Позиция триггера (когда верх триггера достигает центра экрана)
+				start: "top bottom ",    // Позиция триггера (когда верх триггера достигает центра экрана)
 				end: "bottom center",   // Конец действия триггера
 				scrub: true,             // Привязка анимации к скроллу
 				markers: 0,
@@ -101,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	);
 });
-
 
 /* ====================================
 Бегущая строка
@@ -127,9 +126,6 @@ function marquee() {
 		});
 
 		function scrollMarquee() {
-			// Останавливаем анимацию при изменении ширины окна
-			if (window.innerWidth <= 991.98) return;
-
 			// Определяем направление и обновляем смещение
 			if (marquee.dataset.direction === "left") {
 				scrollAmount -= speed;
@@ -210,6 +206,98 @@ function init() {
 		});
 	}
 }
+
+/* ====================================
+Позиция sticky
+==================================== */
+function sticky() {
+	let addWindowScrollEvent = false;
+	function stickyBlock() {
+		// data-sticky для родителя внутри которого прилипает блок *
+		// data-sticky-header для родителя, учитываем высоту хедера
+		// data-sticky-top="" для родителя, можно указать отступ сверху
+		// data-sticky-bottom="" для родителя, можно указать отступ снизу
+		// data-sticky-item для прилипающего блока *
+		addWindowScrollEvent = true;
+
+		function stickyBlockInit() {
+			const stickyParents = document.querySelectorAll('[data-sticky]');
+
+			if (stickyParents.length) {
+				stickyParents.forEach(stickyParent => {
+					let stickyConfig = {
+						media: stickyParent.dataset.sticky ? parseInt(stickyParent.dataset.sticky) : null,
+						top: stickyParent.dataset.stickyTop ? parseInt(stickyParent.dataset.stickyTop) : 0,
+						bottom: stickyParent.dataset.stickyBottom ? parseInt(stickyParent.dataset.stickyBottom) : 0,
+						header: stickyParent.hasAttribute('data-sticky-header') ? document.querySelector('header').offsetHeight : 0
+					}
+					stickyBlockItem(stickyParent, stickyConfig);
+				});
+			}
+		}
+		function stickyBlockItem(stickyParent, stickyConfig) {
+			const stickyBlockItem = stickyParent.querySelector('[data-sticky-item]');
+			const headerHeight = stickyConfig.header;
+			const offsetTop = headerHeight + stickyConfig.top;
+			const startPoint = stickyBlockItem.getBoundingClientRect().top + scrollY - offsetTop;
+
+			document.addEventListener("windowScroll", stickyBlockActions);
+			window.addEventListener("resize", stickyBlockActions);
+
+			function stickyBlockActions(e) {
+				const endPoint = (stickyParent.offsetHeight + stickyParent.getBoundingClientRect().top + scrollY) - (offsetTop + stickyBlockItem.offsetHeight + stickyConfig.bottom);
+				let stickyItemValues = {
+					position: "relative",
+					bottom: "auto",
+					top: "0px",
+					left: "0px",
+					width: "auto"
+				}
+				if (!stickyConfig.media || stickyConfig.media < window.innerWidth) {
+					// if (offsetTop + stickyConfig.bottom + stickyBlockItem.offsetHeight < window.innerHeight) {
+					if (offsetTop + stickyConfig.bottom) {
+						if (scrollY >= startPoint && scrollY <= endPoint) {
+							stickyItemValues.position = `fixed`;
+							stickyItemValues.bottom = `auto`;
+							stickyItemValues.top = `${offsetTop}px`;
+							stickyItemValues.left = `${stickyBlockItem.getBoundingClientRect().left}px`; // Учесть разницу в ширине экрана?
+							stickyItemValues.width = `${stickyBlockItem.offsetWidth}px`;
+						} else if (scrollY >= endPoint) {
+							stickyItemValues.position = `absolute`;
+							stickyItemValues.bottom = `${stickyConfig.bottom}px`;
+							stickyItemValues.top = `auto`;
+							stickyItemValues.left = `0px`;
+							stickyItemValues.width = `${stickyBlockItem.offsetWidth}px`;
+						}
+					}
+				}
+				stickyBlockType(stickyBlockItem, stickyItemValues);
+			}
+		}
+		function stickyBlockType(stickyBlockItem, stickyItemValues) {
+			stickyBlockItem.style.cssText = `position:${stickyItemValues.position};bottom:${stickyItemValues.bottom};top:${stickyItemValues.top};left:${stickyItemValues.left};width:${stickyItemValues.width};`;
+		}
+		stickyBlockInit();
+	}
+	stickyBlock()
+
+	// При подключении модуля обработчик события запустится автоматически
+	setTimeout(() => {
+		if (addWindowScrollEvent) {
+			let windowScroll = new Event("windowScroll");
+			window.addEventListener("scroll", function (e) {
+				document.dispatchEvent(windowScroll);
+			});
+		}
+	}, 0);
+}
+function checkSticky() {
+	if (document.querySelector('[data-sticky]') && (window.innerWidth > 991.98)) {
+		sticky()
+	}
+}
+window.addEventListener('load', checkSticky)
+window.addEventListener('resize', checkSticky)
 
 /* ====================================
 Инициализация галереи

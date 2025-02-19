@@ -1,6 +1,7 @@
 .rs-partners {
   margin-top: 40px;
   position: relative;
+  overflow: hidden;
 }
 @media (max-width: 1920px) {
   .rs-partners {

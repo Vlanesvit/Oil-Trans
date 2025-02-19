@@ -1,7 +1,6 @@
 @import "../base/_mixin";
 
 .rs-numbers {
-	margin-top: -301px;
 	position: relative;
 	overflow: hidden;
 	padding-top: 245px;
@@ -9,7 +8,11 @@
 
 	@include adaptive-calc(padding-top, 50, 245, 320, 1920);
 	@include adaptive-calc(padding-bottom, 50, 137, 320, 1920);
-	@include adaptive-calc(margin-top, -0, -301, 320, 1920);
+
+	@media (min-width: 991.98px) {
+		margin-top: -301px;
+		@include adaptive-calc(margin-top, -189, -301, 991.98, 1920);
+	}
 
 	@media (max-width: 1169.98px) {
 		margin-top: 0px;

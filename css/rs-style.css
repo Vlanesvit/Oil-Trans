@@ -294,7 +294,9 @@ p {
           justify-content: center;
   text-align: center;
   z-index: 10;
-  font-family: "Raleway", sans-serif;
+  -webkit-transition: border-radius 0.3s ease 0s;
+  transition: border-radius 0.3s ease 0s;
+  font-family: "inter", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 125%;
@@ -307,7 +309,7 @@ p {
   }
 }
 .rs-btn._btn-primary {
-  color: #fafafa;
+  color: #fff;
   background-color: var(--primary-color);
 }
 .rs-btn._btn-white {
@@ -362,6 +364,9 @@ p {
           transform: translateY(200%);
 }
 @media (any-hover: hover) {
+  .rs-btn:hover {
+    border-radius: 0px;
+  }
   .rs-btn:hover .rs-btn__text:nth-child(1) {
     -webkit-transform: translateY(-200%);
         -ms-transform: translateY(-200%);

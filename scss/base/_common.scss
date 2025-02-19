@@ -73,8 +73,8 @@ p {
 	justify-content: center;
 	text-align: center;
 	z-index: 10;
-
-	font-family: "Raleway", sans-serif;
+	transition: border-radius 0.3s ease 0s;
+	font-family: "inter", sans-serif;
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 125%;
@@ -84,7 +84,7 @@ p {
 	@include adaptive-calc(font-size, 13, 16, 320, 1920);
 
 	&._btn-primary {
-		color: #fafafa;
+		color: #fff;
 		background-color: var(--primary-color);
 	}
 
@@ -126,6 +126,8 @@ p {
 
 	@media (any-hover: hover) {
 		&:hover {
+			border-radius: 0px;
+
 			.rs-btn {
 				&__text {
 					&:nth-child(1) {

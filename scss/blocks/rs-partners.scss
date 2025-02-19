@@ -3,6 +3,7 @@
 .rs-partners {
 	margin-top: 40px;
 	position: relative;
+	overflow: hidden;
 
 	@include adaptive-calc(margin-top, 50, 40, 320, 1920);
 

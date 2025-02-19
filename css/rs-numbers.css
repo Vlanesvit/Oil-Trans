@@ -1,5 +1,4 @@
 .rs-numbers {
-  margin-top: -301px;
   position: relative;
   overflow: hidden;
   padding-top: 245px;
@@ -15,9 +14,14 @@
     padding-bottom: calc(50px + (137 - 50) * (100vw - 320px) / (1920 - 320));
   }
 }
-@media (max-width: 1920px) {
+@media (min-width: 991.98px) {
   .rs-numbers {
-    margin-top: calc(0px + (-301 - 0) * (100vw - 320px) / (1920 - 320));
+    margin-top: -301px;
+  }
+}
+@media (min-width: 991.98px) and (max-width: 1920px) {
+  .rs-numbers {
+    margin-top: calc(-189px + (-301 - -189) * (100vw - 991.98px) / (1920 - 991.98));
   }
 }
 @media (max-width: 1169.98px) {
